@@ -1,0 +1,163 @@
+import Button from '@/registry/default/ui/button'
+
+# Button
+
+A versatile button component that displays different states with icons. Perfect for showing upload status, form submission states, or any action feedback.
+
+## Preview
+
+<div className="flex flex-wrap gap-4 items-center justify-center p-8 border border-gray-800 rounded-lg bg-gray-900/20">
+  <Button name="Default" variant="default" />
+  <Button name="Success" variant="Success" />
+  <Button name="Failed" variant="Failed" />
+  <Button name="Pending" variant="Pending" />
+</div>
+
+## Installation
+
+**Step 1:** Install dependencies
+
+```bash
+npm install class-variance-authority tailwind-merge
+```
+
+**Step 2:** Add icons to your public folder
+
+Make sure you have these icon files in `/public/icons/`:
+
+* `file.svg`, `cross-small.svg`, `pending.svg`, `inprogress.svg`
+* `submitted.svg`, `inreview.svg`, `success.svg`, `expired.svg`
+
+**Step 3:** Copy the component code
+
+```tsx title="registry/default/ui/button/button.tsx"
+// ...complete Button component code as given
+```
+
+## Usage
+
+```tsx
+import Button from "@/components/ui/button"
+
+export default function MyComponent() {
+  return (
+    <div className="space-y-4">
+      <Button name="Click me" variant="default" />
+      <Button name="Upload Complete" variant="Success" />
+      <Button name="Upload Failed" variant="Failed" />
+    </div>
+  )
+}
+```
+
+## Variants
+
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+  <div className="space-y-3">
+    <h3 className="text-white font-medium">Status Variants</h3>
+    <div className="space-y-2">
+      <Button name="Success" variant="Success" />
+      <Button name="Failed" variant="Failed" />
+      <Button name="Pending" variant="Pending" />
+      <Button name="In Progress" variant="InProgress" />
+    </div>
+  </div>
+
+  <div className="space-y-3">
+    <h3 className="text-white font-medium">Workflow Variants</h3>
+    <div className="space-y-2">
+      <Button name="Submitted" variant="Submitted" />
+      <Button name="In Review" variant="InReview" />
+      <Button name="Expired" variant="Expired" />
+      <Button name="Default" variant="default" />
+    </div>
+  </div>
+</div>
+
+## Props
+
+### Button Props
+
+The `Button` component supports the following props:
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
+      <td><code>string</code></td>
+      <td>–</td>
+      <td>The text to display in the button</td>
+    </tr>
+    <tr>
+      <td><code>variant</code></td>
+      <td>
+        <code>"default"</code> | <code>"Success"</code> | <code>"Failed"</code> | <code>"Pending"</code> | <code>"InProgress"</code> | <code>"Submitted"</code> | <code>"InReview"</code> | <code>"Expired"</code>
+      </td>
+      <td><code>"default"</code></td>
+      <td>The visual style and icon</td>
+    </tr>
+    <tr>
+      <td><code>size</code></td>
+      <td><code>"default"</code> | <code>"medium"</code> | <code>"large"</code></td>
+      <td><code>"default"</code></td>
+      <td>The size of the button</td>
+    </tr>
+    <tr>
+      <td><code>className</code></td>
+      <td><code>string</code></td>
+      <td>–</td>
+      <td>Additional CSS classes</td>
+    </tr>
+    <tr>
+      <td><code>onClick</code></td>
+      <td><code>() => void</code></td>
+      <td>–</td>
+      <td>Click handler function</td>
+    </tr>
+  </tbody>
+</table>
+
+## Examples
+
+### File Upload Status
+
+```tsx
+function FileUpload() {
+  const [status, setStatus] = useState('default')
+
+  return (
+    <div className="space-y-4">
+      <Button name="Choose File" variant="default" onClick={handleUpload} />
+      <Button name="Uploading..." variant="InProgress" />
+      <Button name="Upload Complete" variant="Success" />
+    </div>
+  )
+}
+```
+
+### Form Submission
+
+```tsx
+function SubmitForm() {
+
+  const handleSubmit = () =>{
+    console.log("The form is being submitted")
+  }
+
+  return (
+    <div className="flex gap-3">
+      <Button name="Submit" variant="Submitted" onClick={handleSubmit}/>
+      <Button name="Under Review" variant="InReview" />
+      <Button name="Approved" variant="Success" />
+    </div>
+  )
+}
+```
