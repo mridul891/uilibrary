@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "../registry/default/ui/button";
+
 import Link from "next/link";
 
 export default function Home() {
